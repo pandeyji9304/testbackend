@@ -86,7 +86,7 @@ const handleConnection = (io) => (socket) => {
             route.messages.push({ message, timestamp: new Date() });
     
             // Check if the message starts with 'D' and the route status is 'Driving safely'
-            if (message.startsWith('D') && route.status === 'Driving safely') {
+            if (message.startsWith('D') && route.status === 'driving safely') {
                 // Update the status to 'active alerts' only if it's not already in that state
                 route.status = 'active alerts';
                 await route.save(); // Save the updated route
@@ -95,10 +95,10 @@ const handleConnection = (io) => (socket) => {
                 io.to(roomName).emit('statusUpdate', route.status);
             }
     
-        //     // Ensure the status remains 'active alerts' once it's set, preventing reversion
-        // if (route.status === 'active alerts') {
-        //     io.to(roomName).emit('statusUpdate', route.status); // Emit current status
-        // }
+            // Ensure the status remains 'active alerts' once it's set, preventing reversion
+        if (route.status === 'active alerts') {
+            io.to(roomName).emit('statusUpdate', route.status); // Emit current status
+        }
     
             // Save the updated route after the message is added
             await route.save();
