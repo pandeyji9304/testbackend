@@ -95,10 +95,10 @@ const handleConnection = (io) => (socket) => {
                 io.to(roomName).emit('statusUpdate', route.status);
             }
     
-            // Ensure the status remains 'active alerts' once it's set, preventing reversion
-        if (route.status === 'active alerts') {
-            io.to(roomName).emit('statusUpdate', route.status); // Emit current status
-        }
+        //     // Ensure the status remains 'active alerts' once it's set, preventing reversion
+        // if (route.status === 'active alerts') {
+        //     io.to(roomName).emit('statusUpdate', route.status); // Emit current status
+        // }
     
             // Save the updated route after the message is added
             await route.save();
