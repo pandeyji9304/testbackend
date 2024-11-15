@@ -7,12 +7,7 @@ const UserSchema = new mongoose.Schema({
     password: String,
     role: { type: String, default: 'logistics_head' },
     companyName: String,
-    profileImage: { type: String, required: false },
-    
-    resetPasswordToken: String
-
-    // passwordResetExpires: Date,
-
+    profileImage: { type: String, required: false }
     
 });
 

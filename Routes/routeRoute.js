@@ -42,7 +42,7 @@ router.post('/create-route', async (req, res) => {
             departureDetails,
             messages: initialMessage ? [{ message: initialMessage }] : [],
             logisticsHead: req.user._id,
-            driverEmail: driver.email // Include driver's email if needed
+            driverEmail: driver.email, 
         });
 
         await newRoute.save();
