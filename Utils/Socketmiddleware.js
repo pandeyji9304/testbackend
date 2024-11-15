@@ -65,7 +65,7 @@ const handleConnection = (io) => (socket) => {
         }
     });
     
-    socket.on('sendMessage', async (vehicleNumber, routeId, message) => {
+    socket.on('sendMessage', async (vehicleNumber, message) => {
         try {
             const roomName = `${vehicleNumber}-${socket.user.email}`;
             
@@ -76,7 +76,7 @@ const handleConnection = (io) => (socket) => {
             console.log(`Sending message to room: ${roomName}`);
     
             // Fetch the specific route using routeId, vehicleNumber, and ensure the route is not 'ended'
-            const route = await Route.findOne({ _id: routeId, vehicleNumber, status: { $ne: 'ended' } });
+            const route = await Route.findOne({ vehicleNumber, status: { $ne: 'ended' } });
     
             if (!route) {
                 return socket.emit('message', 'No active route found for this vehicle.');
